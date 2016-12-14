@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
-    <div id='title' class='panel-title'>Science Trivia</div>
-      <div id='counter'>time: 25 sec.</div>
-        <div class="main-container panel-primary" id='main-container'>
-          <button id='start' type="button" class="btn btn-default" aria-label="center-align" id='summit'>Start Counter</button>
+ 
+  <div class='header'>
+    <h1>Science Trivia</h1>
+      <div id='counter'>time: 15 sec.</div>
+        <button id='start' type="button" class="btn btn-default align-center-center" aria-label="center-align" id='start'>Start</button>
+  </div>
+         <div id='main-container'>
              <form> 
               <div>
                 <p>What was the average life expectancy of white males born in the U.S. just before the Civil War?</p>
@@ -62,104 +65,17 @@
                   <input type="radio" name="question7" value="blue"> Blue
               </div>
             </form>
+                <button type="button" class="btn btn-default" aria-label="center-align" id='summit'>Summit</button>
               </div>
-                  <button type="button" class="btn btn-default" aria-label="center-align" id='summit'>Summit</button>
-              </div>
-        </div>
+             </div>` 
               <div id='theEnd'>
               <h1>Game Over</h1>
               <div id='coAns'></div>
               <div id='inAns'></div>
-              <button id='restart' type="button" class="btn btn-default" aria-label="center-align" id='summit'>Restart Trivia</button>
+              <button id='restart' type="button" class="btn btn-default" aria-label="center-align" id='restart'>Restart Trivia</button>
               </div>
 
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script>
-
-      var questionOne;
-      var questionTwo;
-      var questionThree; 
-      var questionFour;
-      var questionFive;
-      var questionSix;
-      var questionSeven;
-      var incorrectAns;
-      var correctAns;
-      var gradePlus = [];
-
-      function startGame(){
-        questionOne = $("input[name=question1]:checked").val();
-        questionTwo = $("input[name=question2]:checked").val();
-        questionThree = $("input[name=question3]:checked").val();
-        questionFour = $("input[name=question4]:checked").val();
-        questionFive = $("input[name=question5]:checked").val();
-        questionSix = $("input[name=question6]:checked").val();
-        questionSeven = $("input[name=question7]:checked").val();
-        incorrectAns = 0;
-        correctAns = 0;
-        if (questionOne == '40') {
-            correctAns++;}else {incorrectAns++;}
-        if (questionTwo == 'fish') {
-            correctAns++;}else { incorrectAns++;}
-        if (questionThree == 'ammeter') {
-            correctAns++;}else { incorrectAns++;}
-        if (questionFour == 'mars') {
-            correctAns++;}else { incorrectAns++;}
-        if (questionFive == '4') {
-              correctAns++;}else { incorrectAns++;}
-        if (questionSix == 'relativity') {
-              correctAns++;}else { incorrectAns++;}
-        if (questionSeven == 'yellow') {
-              correctAns++;}else { incorrectAns++;}      
-        gradePlus.push(correctAns);
-        gradePlus.push(incorrectAns);
-       };   
-          
-      $('#theEnd').fadeOut();     
-           
-      $('#summit').on('click', function (){
-        startGame(); 
-        $('#summit').fadeOut();
-        $('.main-container').fadeOut();
-        $('#summit').fadeOut();
-        $('#theEnd').fadeIn();
-        $('#results').text();
-        $('#coAns').text('Correct Answers: ' + gradePlus[0]);
-        $('#inAns').text('Incorrect Answers: ' + gradePlus[1]);  
-        console.log('correct Answers: ' + correctAns);
-        console.log('Incorrect Answers: ' + incorrectAns);
-      });
-
-      $('#start').on('click', function(){
-        $('#start').fadeOut();
-        var counter = 5;
-        setTimeout(countDown,1000);
-        function countDown(){
-          counter--;
-          if(counter > 0){
-            setTimeout(countDown,1000);
-          }else if (counter == 0){
-            startGame();
-            $('.main-container').fadeOut();
-            $('#summit').fadeOut();
-            $('#theEnd').fadeIn();
-            $('#results').text();
-          }
-          $('#counter').text('Time: ' + counter + ' sec.'); 
-        }
-      });
-
-      $('#restart').on('click', function(){
-        $("input:checked").removeAttr("checked");
-        $('#start').fadeIn();
-        $('#summit').fadeIn();
-        $('.main-container').fadeIn();
-        $('#summit').fadeIn();
-        $('#theEnd').fadeOut();
-        $('#results').text();
-        $('#counter').text('time: 25 sec.');
-        gradePlus = [];
-      });
-    </script>
+    <script src='assets/javascript/app.js'></script>
   </body>
 </html>

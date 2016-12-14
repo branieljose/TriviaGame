@@ -1,7 +1,21 @@
- {
-  background-image: url('..images/science.jpg');
-  background-color: red;
+#theEnd, #main-container, #summit, #counter, #theEnd {
+  display: none;
 }
-#title {
-  font-weight: bold;
+.header, button{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+ 
+
+}
+#main-container{
+  width: 80%;
+  margin: 0 auto;
+  
+  
+}
+#theEnd, button{
+  width: 80%;
+  margin: 0 auto;
+  
 }
