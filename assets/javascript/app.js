@@ -9,8 +9,11 @@ $(document).ready(function(){
     var incorrectAns;
     var correctAns;
     var gradePlus = [];
+    var counter;
+    var unchecked;
 
     function startGame(){
+        counter = 0;
         questionOne = $("input[name=question1]:checked").val();
         questionTwo = $("input[name=question2]:checked").val();
         questionThree = $("input[name=question3]:checked").val();
@@ -18,6 +21,7 @@ $(document).ready(function(){
         questionFive = $("input[name=question5]:checked").val();
         questionSix = $("input[name=question6]:checked").val();
         questionSeven = $("input[name=question7]:checked").val();
+        unchecked = $('input[type="radio"]:not(:checked)');
         incorrectAns = 0;
         correctAns = 0;
         if (questionOne == '40') {
@@ -36,6 +40,7 @@ $(document).ready(function(){
               correctAns++;}else { incorrectAns++;}      
         gradePlus.push(correctAns);
         gradePlus.push(incorrectAns);
+        console.log(Math.floor((unchecked.length/4)-1));
        };        
       
     function fadeOut(){
@@ -45,21 +50,16 @@ $(document).ready(function(){
         $('#theEnd').hide();
         $('#results').text();
         $('#counter').hide();
-    }     
+        }     
       
     $('#summit').on('click', function (){
+        startGame();
         $('#main-container').fadeOut();
-            $('#summit').hide();
-            $('#theEnd').fadeIn();
-            $('#results').text();
-            $('#coAns').text('Correct Answers: ' + gradePlus[0]);
-            $('#inAns').text('Incorrect Answers: ' + gradePlus[1]); 
-        // startGame(); 
-        // fadeOut();
-        // $('#coAns').text('Correct Answers: ' + gradePlus[0]);
-        // $('#inAns').text('Incorrect Answers: ' + gradePlus[1]);  
-        // console.log('correct Answers: ' + correctAns);
-        // console.log('Incorrect Answers: ' + incorrectAns);
+        $('#summit').hide();
+        $('#theEnd').fadeIn();
+        $('#results').text();
+        $('#coAns').text('Correct Answers: ' + gradePlus[0]);
+        $('#inAns').text('Incorrect Answers: ' + gradePlus[1]);
         });
      
     $('#restart').on('click', function(){
@@ -67,7 +67,7 @@ $(document).ready(function(){
         $('#start').fadeIn();
         $('#counter').text('time: 15 sec.');
         gradePlus = [];
-      });
+        });
 
     $('#start').on('click', function(){
         $("input:checked").removeAttr("checked");
@@ -75,18 +75,17 @@ $(document).ready(function(){
         $('#main-container').show();
         $('#counter').show();
         $('#summit').show()
-        var counter = 15;
+         counter = 15;
         setTimeout(countDown,1000);
-        function countDown(){
-          counter--;
-          if(counter > 0){
+        function countDown(){ 
+          if (counter > 0){
+            counter--;  
             setTimeout(countDown,1000);
           }else if (counter == 0){
             startGame();
             $('#main-container').fadeOut();
             $('#summit').hide();
             $('#theEnd').fadeIn();
-            $('#results').text();
             $('#coAns').text('Correct Answers: ' + gradePlus[0]);
             $('#inAns').text('Incorrect Answers: ' + gradePlus[1]); 
           }
